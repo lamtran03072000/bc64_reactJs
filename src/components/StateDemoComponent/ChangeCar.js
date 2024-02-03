@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // 2. Xác định xem state string, number ...
 // 3 .  binding state lên giao diện
 // 4 . Xử lý sự kiện thay đổi state => setState
+
 export default class ChangeCar extends Component {
   state = {
     imgCar: './img/products/red-car.jpg',
