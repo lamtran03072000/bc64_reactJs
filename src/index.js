@@ -12,6 +12,7 @@ import ChangeCar from './components/StateDemoComponent/ChangeCar';
 import RenderWithMap from './components/RenderWithMap/RenderWithMap';
 import DemoProps from './components/Props/DemoProps';
 import ExRenderListProduct from './components/Props/ExRenderListProduct/ExRenderListProduct';
+import ExViewDetail from './components/Props/ExViewDetail/ExViewDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
@@ -31,6 +32,7 @@ root.render(
     {/* <ChangeCar /> */}
     {/* <RenderWithMap /> */}
     {/* <DemoProps /> */}
-    <ExRenderListProduct />
+    {/* <ExRenderListProduct /> */}
+    <ExViewDetail />
   </div>,
 );
