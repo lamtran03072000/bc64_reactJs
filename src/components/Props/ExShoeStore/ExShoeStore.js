@@ -172,6 +172,57 @@ export default class ExShoeStore extends Component {
       arrCart: cartShoeCurrent,
     });
   };
+  // [
+  //   {id : 1,
+  //   name:"nike",
+  // soLuong:2},
+  //   {id : 2,
+  //   name:"adidas",
+  // soLuong:4},
+  //   {id : 3,
+  //   name:"Convert",
+  // soLuong:1}
+  // ]
+
+  handleDeleteShoe = (shoeClick) => {
+    // Cách 1 dựa vào id shoe để tìm ra index sp ở trong giỏ hàng , và xoá
+    // Dựa vào index để cập nhật lại arrCart
+    // let cartEdit = this.state.arrCart;
+    // let indexShoeClick = cartEdit.findIndex((shoe) => shoe.id == shoeClick);
+    // // Nếu tồn tại sản phẩm thì xoá nó đi
+
+    // if (indexShoeClick != -1) {
+    //   cartEdit.splice(indexShoeClick, 1);
+    // }
+
+    // Cách 2 : Xoá dựa vào filter
+    let cartEditFilter = this.state.arrCart.filter(
+      (shoe) => shoe.id != shoeClick,
+    );
+
+    this.setState({
+      arrCart: cartEditFilter,
+    });
+  };
+  handleChangeQuantityShoe = (shoeClick, soLuongChange) => {
+    // soLuongChange sẽ là -1 nếu click vào dấu - , và là +1 nếu click vào dấu +
+    let arrCartEdit = this.state.arrCart;
+    // Tìm ra index sản phẩm được click trong giỏ hàng
+    let indexShoeClick = arrCartEdit.findIndex((shoe) => shoe.id == shoeClick);
+    // check sản phẩm có tồn tại trong giỏ hàng không
+    if (indexShoeClick != -1) {
+      arrCartEdit[indexShoeClick].soLuong += soLuongChange;
+      // Khi số lượng của sản phẩm < 1 thì xoá sản phẩm đó ra khỏi giỏ hàng
+      if (arrCartEdit[indexShoeClick].soLuong < 1) {
+        this.handleDeleteShoe(shoeClick);
+        // Sau khi xoá xong thì return
+        return;
+      }
+    }
+    this.setState({
+      arrCart: arrCartEdit,
+    });
+  };
   render() {
     return (
       <div className="container">
@@ -180,7 +231,11 @@ export default class ExShoeStore extends Component {
           dataListShoe={dataListShoe}
         />
         <h3 className="mt-5">Giỏ hàng</h3>
-        <CartShoe dataCartShoe={this.state.arrCart} />
+        <CartShoe
+          dataCartShoe={this.state.arrCart}
+          handleDeleteShoe={this.handleDeleteShoe}
+          handleChangeQuantityShoe={this.handleChangeQuantityShoe}
+        />
       </div>
     );
   }
