@@ -13,6 +13,7 @@ import RenderWithMap from './components/RenderWithMap/RenderWithMap';
 import DemoProps from './components/Props/DemoProps';
 import ExRenderListProduct from './components/Props/ExRenderListProduct/ExRenderListProduct';
 import ExViewDetail from './components/Props/ExViewDetail/ExViewDetail';
+import ExShoeStore from './components/Props/ExShoeStore/ExShoeStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
@@ -33,6 +34,7 @@ root.render(
     {/* <RenderWithMap /> */}
     {/* <DemoProps /> */}
     {/* <ExRenderListProduct /> */}
-    <ExViewDetail />
+    {/* <ExViewDetail /> */}
+    <ExShoeStore />
   </div>,
 );
