@@ -1,40 +1,72 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// import HomeLayout from './components/HomeLayout/HomeLayout';
-import Databinding from './components/Databinding/Databinding';
-import StyleComponent from './components/StyleComponent/StyleComponent';
-import HandleEvent from './components/HandleEvent/HandleEvent';
-import StateDemoComponent from './components/StateDemoComponent/StateDemoComponent';
-import ChangeColor from './components/StateDemoComponent/ChangeColor';
-import ChangeAvatar from './components/StateDemoComponent/ChangeAvatar';
-import ChangeCar from './components/StateDemoComponent/ChangeCar';
-import RenderWithMap from './components/RenderWithMap/RenderWithMap';
-import DemoProps from './components/Props/DemoProps';
-import ExRenderListProduct from './components/Props/ExRenderListProduct/ExRenderListProduct';
-import ExViewDetail from './components/Props/ExViewDetail/ExViewDetail';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import ExShoeStore from './components/Props/ExShoeStore/ExShoeStore';
-
+import ChangeColor from './components/StateDemoComponent/ChangeColor';
+import ChangeCar from './components/StateDemoComponent/ChangeCar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
 // 2 loại function component , class component
 root.render(
-  <div>
-    {/* <Card></Card>
-    <Card /> */}
-    {/* <AlertComponent /> */}
-    {/* <HomeLayout /> */}
-    {/* <Databinding /> */}
-    {/* <StyleComponent /> */}
-    {/* <HandleEvent /> */}
-    {/* <StateDemoComponent /> */}
-    {/* <ChangeColor /> */}
-    {/* <ChangeAvatar /> */}
-    {/* <ChangeCar /> */}
-    {/* <RenderWithMap /> */}
-    {/* <DemoProps /> */}
-    {/* <ExRenderListProduct /> */}
-    {/* <ExViewDetail /> */}
-    <ExShoeStore />
-  </div>,
+  <BrowserRouter>
+    {/* Những thẻ nào để ngoài Routes thì luôn luôn được load lên */}
+    {/* Thẻ Navlink (của react router dom) để di chuyển giữa các trang trong react */}
+    {/* isActive sẽ trả về true khi router đó đang active, ngược lại sẽ trả về false */}
+    <NavLink
+      // className={(props) => {
+      //   if (props.isActive) {
+      //     return 'text-warning ';
+      //   } else {
+      //     return 'text-danger';
+      //   }
+      // }}
+      style={(props) => {
+        if (props.isActive) {
+          return {
+            textDecoration: 'none',
+          };
+        }
+      }}
+      to="/shoe-store"
+    >
+      Bài tập shoe store
+    </NavLink>
+    <NavLink
+      className={(props) => {
+        if (props.isActive) {
+          return 'text-warning mx-2';
+        } else {
+          return 'text-danger mx-2';
+        }
+      }}
+      to="/bt-change-color"
+    >
+      Bài tập đổi màu
+    </NavLink>
+    <NavLink
+      className={(props) => {
+        if (props.isActive) {
+          return 'text-warning';
+        } else {
+          return 'text-danger';
+        }
+      }}
+      to="/bt-change-car"
+    >
+      Bài tập đổi xe
+    </NavLink>
+
+    <NavLink className={clsx('mx-2', 'text-primary', 'bg-dark')} to="">
+      Trang chủ
+    </NavLink>
+    <Routes>
+      {/* localhost:3000/shoe-store */}
+
+      <Route path="" element={<div>Trang chủ</div>}></Route>
+      <Route path="/shoe-store" element={<ExShoeStore />}></Route>
+      <Route path="/bt-change-color" element={<ChangeColor />}></Route>
+      <Route path="/bt-change-car" element={<ChangeCar />}></Route>
+    </Routes>
+  </BrowserRouter>,
 );
