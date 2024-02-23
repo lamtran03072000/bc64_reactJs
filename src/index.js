@@ -5,6 +5,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import ExShoeStore from './components/Props/ExShoeStore/ExShoeStore';
 import ChangeColor from './components/StateDemoComponent/ChangeColor';
 import ChangeCar from './components/StateDemoComponent/ChangeCar';
+import clsx from 'clsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
 // 2 loại function component , class component
@@ -14,13 +15,6 @@ root.render(
     {/* Thẻ Navlink (của react router dom) để di chuyển giữa các trang trong react */}
     {/* isActive sẽ trả về true khi router đó đang active, ngược lại sẽ trả về false */}
     <NavLink
-      // className={(props) => {
-      //   if (props.isActive) {
-      //     return 'text-warning ';
-      //   } else {
-      //     return 'text-danger';
-      //   }
-      // }}
       style={(props) => {
         if (props.isActive) {
           return {
@@ -35,7 +29,7 @@ root.render(
     <NavLink
       className={(props) => {
         if (props.isActive) {
-          return 'text-warning mx-2';
+          return 'text-warning mx-2 ';
         } else {
           return 'text-danger mx-2';
         }
@@ -57,9 +51,20 @@ root.render(
       Bài tập đổi xe
     </NavLink>
 
-    <NavLink className={clsx('mx-2', 'text-primary', 'bg-dark')} to="">
+    {/* clsx cho phép viết class qua dạng (A,B,C) */}
+    <NavLink
+      className={clsx((props) => {
+        if (props.isActive) {
+          return 'text-warning';
+        } else {
+          return 'text-danger';
+        }
+      }, ' mx-2')}
+      to=""
+    >
       Trang chủ
     </NavLink>
+
     <Routes>
       {/* localhost:3000/shoe-store */}
 
