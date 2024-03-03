@@ -20,6 +20,7 @@ import Register from './pages/auth/Register';
 import Page404 from './pages/Page404';
 import Admin from './pages/auth/Admin';
 import ReactForm from './pages/ReactForm/ReactForm';
+import ReactLifeCycle from './pages/ReactLifeCycle/ReactLifeCycle';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // jsx : => html được viết trong file js (nền js) được gọi là jsx
 // 2 loại function component , class component
@@ -37,6 +38,7 @@ root.render(
         <Route path="bt-change-color" element={<ChangeColor />}></Route>
         <Route path="bt-change-car" element={<ChangeCar />}></Route>
         <Route path="bt-form" element={<ReactForm />}></Route>
+        <Route path="bt-life-cycle" element={<ReactLifeCycle />}></Route>
       </Route>
       {/* AuthTemplate */}
       <Route path="auth" element={<AuthTemplate />}>

@@ -84,6 +84,20 @@ export default class HeaderLayout extends Component {
                     Bài tập form
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return 'active';
+                      } else {
+                        return '';
+                      }
+                    }, 'nav-link')}
+                    to="bt-life-cycle"
+                  >
+                    Lifecycle
+                  </NavLink>
+                </li>
               </ul>
               <form className="d-flex">
                 <input

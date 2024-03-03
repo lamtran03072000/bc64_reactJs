@@ -89,8 +89,19 @@ export default class ProductForm extends Component {
     let { handleAddProduct } = this.props;
     handleAddProduct(this.state.value);
   };
+  static getDerivedStateFromProps(newProps, currentState) {
+    console.log('currentState: ', currentState);
+    console.log('newProps: ', newProps);
+    // Can thiệp trước khi render , lấy props product edit gán vào state
+    // Trả ra state mới để hàm lấy dữ liệu
+    if (newProps.productEdit.id !== currentState.value.id) {
+      // Hành động khi user click nút edit
+      currentState.value = { ...newProps.productEdit };
+    }
+    return currentState;
+  }
   render() {
-    console.log('state', this.state);
+    let { id, tenSp, img, price } = this.state.value;
     return (
       <div className="container mt-5">
         <h2>Form Nhập Thông Tin Sản Phẩm</h2>
@@ -108,6 +119,7 @@ export default class ProductForm extends Component {
                   name="id"
                   id="xinchaobc64"
                   placeholder="Nhập ID sản phẩm"
+                  value={id}
                   onInput={this.handleChangeInput}
                 />
                 <p style={{ height: '30px' }} className="text-danger">
@@ -123,6 +135,7 @@ export default class ProductForm extends Component {
                   data-type="string"
                   className="form-control"
                   name="tenSp"
+                  value={tenSp}
                   placeholder="Nhập tên sản phẩm"
                   onInput={this.handleChangeInput}
                 />
@@ -140,6 +153,7 @@ export default class ProductForm extends Component {
                   type="url"
                   className="form-control"
                   name="img"
+                  value={img}
                   placeholder="Nhập URL hình ảnh sản phẩm"
                   onInput={this.handleChangeInput}
                 />
@@ -155,6 +169,7 @@ export default class ProductForm extends Component {
                   type="number"
                   className="form-control"
                   name="price"
+                  value={price}
                   placeholder="Nhập giá sản phẩm"
                   onInput={this.handleChangeInput}
                 />
@@ -170,6 +185,16 @@ export default class ProductForm extends Component {
             className="btn btn-primary"
           >
             Thêm Sản Phẩm
+          </button>
+          <button
+            disabled={!this.state.isSubmit}
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              this.props.handleUpdateProduct(this.state.value);
+            }}
+          >
+            Cập nhật sản phẩm
           </button>
         </form>
       </div>
