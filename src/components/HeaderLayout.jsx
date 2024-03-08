@@ -98,6 +98,48 @@ export default class HeaderLayout extends Component {
                     Lifecycle
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return 'active';
+                      } else {
+                        return '';
+                      }
+                    }, 'nav-link')}
+                    to="redux-change-number"
+                  >
+                    Redux change number
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return 'active';
+                      } else {
+                        return '';
+                      }
+                    }, 'nav-link')}
+                    to="redux-change-fsize"
+                  >
+                    Redux change fsize
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className={clsx((props) => {
+                      if (props.isActive) {
+                        return 'active';
+                      } else {
+                        return '';
+                      }
+                    }, 'nav-link')}
+                    to="redux-change-car"
+                  >
+                    Redux car
+                  </NavLink>
+                </li>
               </ul>
               <form className="d-flex">
                 <input
